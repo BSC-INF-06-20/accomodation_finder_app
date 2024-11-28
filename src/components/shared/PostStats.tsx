@@ -27,29 +27,24 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   const { mutate: deleteSavePost } = useDeleteSavedPost();
 
   const { data: currentUser, isLoading } = useGetCurrentUser();
-  
-  const savedPostRecord = Array.isArray(currentUser?.save)
-     ?currentUser.save.find(
-    (record: Models.Document) => record.post.$id === post.$id
-  ) : null;
 
   useEffect(() => {
-    setIsSaved(!!savedPostRecord);
-  }, [currentUser, savedPostRecord]);
+    if (currentUser) {
+      const savedRecord = currentUser?.save?.find(
+        (record: Models.Document) => record.post.$id === post.$id
+      );
+      setIsSaved(!!savedRecord);
+    }
+  }, [currentUser, post.$id]);
 
   const handleLikePost = (
     e: React.MouseEvent<HTMLImageElement, MouseEvent>
   ) => {
     e.stopPropagation();
 
-    let likesArray = [...likes];
+    if (isLoading || !currentUser) return; 
 
-    if(isLoading){
-      return <div>Loading user Data</div>;
-    }
-    if(!currentUser){
-      return <div>User Not found</div>;
-    }
+    let likesArray = [...likes];
 
     if (likesArray.includes(userId)) {
       likesArray = likesArray.filter((Id) => Id !== userId);
@@ -66,9 +61,11 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   ) => {
     e.stopPropagation();
 
-    if (savedPostRecord) {
+    if (isLoading || !currentUser) return; 
+
+    if (isSaved) {
       setIsSaved(false);
-      return deleteSavePost(savedPostRecord.$id);
+      return deleteSavePost;
     }
 
     savePost({ userId: userId, postId: post.$id });
@@ -80,15 +77,12 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
     : "";
 
   return (
-    <div
-      className={`flex justify-between items-center z-20 ${containerStyles}`}>
+    <div className={`flex justify-between items-center z-20 ${containerStyles}`}>
       <div className="flex gap-2 mr-5">
         <img
-          src={`${
-            checkIsLiked(likes, userId)
-              ? "/assets/icons/liked.svg"
-              : "/assets/icons/like.svg"
-          }`}
+          src={checkIsLiked(likes, userId)
+            ? "/assets/icons/liked.svg"
+            : "/assets/icons/like.svg"}
           alt="like"
           width={20}
           height={20}
@@ -108,8 +102,6 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
           onClick={(e) => handleSavePost(e)}
         />
       </div>
-                        
-
     </div>
   );
 };
