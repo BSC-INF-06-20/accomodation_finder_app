@@ -1,0 +1,113 @@
+/* General reset or styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  section#Abouts {
+    padding: 4rem 0; /* Add some spacing around the section */
+    
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem; /* Add padding inside the container */
+  }
+  
+  .about__container {
+    display: flex;
+    flex-wrap: wrap; /* Allow the content to wrap on smaller screens */
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .about__me {
+    flex: 1;
+    margin-right: 2rem; /* Add space between the image and text */
+  }
+  
+  .about__me-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Optional: Add rounded corners to the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for the image */
+  }
+  
+  .about__content {
+    flex: 2;
+  }
+  
+  .about__cards {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem; /* Add spacing between cards and paragraph */
+  }
+  
+  .about__card {
+    background-color: #8989d6;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    width: 30%; /* Ensure cards take up equal space */
+  }
+  
+  .about__icon {
+    color: #1c1933; /* You can adjust the color */
+    font-size: 3rem;
+    
+  }
+  
+  .about__card h5 {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .about__card small {
+    display: block;
+    margin-top: 0.5rem;
+    color: white;
+  }
+  
+  .about__content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: white;
+    margin-bottom: 2rem;
+  }
+  
+  .about__content a {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #8989d6;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .about__container {
+      flex-direction: column;
+    }
+  
+    .about__me {
+      margin-right: 0;
+      margin-bottom: 2rem; /* Add space between image and content */
+    }
+  
+    .about__cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .about__card {
+      width: 80%; /* Make cards take more space on small screens */
+      margin-bottom: 1rem;
+    }
+  }
+  
