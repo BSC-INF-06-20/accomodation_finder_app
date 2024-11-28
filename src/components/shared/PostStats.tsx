@@ -40,7 +40,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
   const handleLikePost = (
     e: React.MouseEvent<HTMLImageElement, MouseEvent>
   ) => {
-    e.stopPropagation();
+    e.stopPropagation();     
 
     if (isLoading || !currentUser) return; 
 
