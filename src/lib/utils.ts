@@ -51,7 +51,7 @@ export const multiFormatDateString = (timestamp: string = ""): string => {
     default:
       return "Just now";
   }
-};
+};            
 
 export const checkIsLiked = (likeList: string[], userId: string) => {
   return likeList.includes(userId);
