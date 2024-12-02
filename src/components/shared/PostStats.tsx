@@ -33,7 +33,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
       const savedRecord = currentUser?.save?.find(
         (record: Models.Document) => record.post.$id === post.$id
       );
-      setIsSaved(!!savedRecord);
+      setIsSaved(!!savedRecord);               
     }
   }, [currentUser, post.$id]);
 
